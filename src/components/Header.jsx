@@ -5,7 +5,7 @@ export default function Header({ theme, onToggleTheme }) {
   return (
     <header className="portfolio-header">
       <div className="header-brand">
-        Younes Nassir
+        <span className="brand-bracket">{'<'}</span>Younes Nassir<span className="brand-bracket">{' />'}</span>
       </div>
       
       <nav className="header-nav">

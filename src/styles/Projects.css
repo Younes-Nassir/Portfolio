@@ -1,33 +1,7 @@
-/* --- THEME SPECIFIC TOKENS --- */
-.light .projects-section {
-  --text-projects-main: #1e293b;
-  --text-projects-muted: #475569;
-  --bg-project-card: #ffffff;
-  --border-project-card: #f1f5f9;
-  --shadow-project-card: rgba(0, 0, 0, 0.05);
-  --bg-project-tag: #f8fafc;
-  --text-project-tag: #334155;
-  --border-project-tag: #cbd5e1;
-  --icon-hover: #6366f1;
-}
-
-.dark .projects-section {
-  --text-projects-main: #f8fafc;
-  --text-projects-muted: #cbd5e1;
-  --bg-project-card: #1e293b;
-  --border-project-card: #334155;
-  --shadow-project-card: rgba(0, 0, 0, 0.3);
-  --bg-project-tag: #0f172a;
-  --text-project-tag: #cbd5e1;
-  --border-project-tag: #475569;
-  --icon-hover: #818cf8;
-}
-
-/* --- SCROLL TRIGGERED REVEAL ANIMATION --- */
-@keyframes projectGlideUp {
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(36px);
   }
   to {
     opacity: 1;
@@ -35,15 +9,9 @@
   }
 }
 
-/* --- MAIN SECTION COMPONENT STRUCTURAL LAYOUT --- */
 .projects-section {
   width: 100%;
   padding: 80px 24px;
-  
-  /* Triggers layout fade-and-lift automatically on scroll */
-  animation: projectGlideUp linear forwards;
-  animation-timeline: view();
-  animation-range: entry 5% cover 25%;
 }
 
 .projects-container {
@@ -51,22 +19,17 @@
   margin: 0 auto;
 }
 
-.projects-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-projects-main);
-  margin-bottom: 40px;
-  border-bottom: 2px solid #6366f1; /* Indigo underline accent styling */
-  width: max-content;
-  padding-bottom: 4px;
+.projects-section .section-eyebrow {
+  animation: fadeInUp linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 20%;
 }
 
-/* --- THE CARD ENGINE GRID --- */
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
-  align-items: stretch; /* Cards stretch to have equal heights in the same row */
+  align-items: stretch;
 }
 
 @media (min-width: 768px) {
@@ -75,76 +38,115 @@
   }
 }
 
-@media (min-width: 1024px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* --- INDIVIDUAL CARD STYLING --- */
 .project-card {
-  background-color: var(--bg-project-card);
-  border: 1px solid var(--border-project-card);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-app);
   border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 4px 20px -2px var(--shadow-project-card);
+  overflow: hidden;
+  box-shadow: 0 4px 20px -4px var(--shadow);
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Pushes tags to the exact bottom of the card */
+  height: 100%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Scroll-driven entrance: runs once as the card enters the viewport,
+     staggered per-card via the inline animation-delay set in Projects.jsx */
+  animation: fadeInUp linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 25%;
 }
 
 .project-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 30px -4px var(--shadow-project-card);
+  box-shadow: 0 16px 32px -10px var(--shadow);
 }
 
-/* Card Header elements */
-.project-card-header {
+/* --- THUMBNAIL / PREVIEW AREA --- */
+.project-card-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-app);
+}
+
+.project-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-thumb-img {
+  transform: scale(1.04);
+}
+
+.project-thumb-placeholder {
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  justify-content: center;
+  background-color: var(--bg-elevated-alt);
 }
 
 .folder-icon {
-  font-size: 2rem;
-  color: #6366f1; /* Modern indigo accent folder */
+  font-size: 2.2rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* --- BODY --- */
+.project-card-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.project-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-app);
+  margin: 0;
 }
 
 .project-links {
   display: flex;
   gap: 14px;
+  flex-shrink: 0;
+  padding-top: 3px;
 }
 
 .project-icon-link {
-  font-size: 1.2rem;
-  color: var(--text-projects-muted);
+  font-size: 1.1rem;
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .project-icon-link:hover {
-  color: var(--icon-hover);
+  color: var(--accent);
   transform: scale(1.1);
 }
 
-/* Card content body typography */
-.project-card-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--text-projects-main);
-  margin-bottom: 12px;
-}
-
 .project-card-text {
-  font-size: 0.95rem;
-  color: var(--text-projects-muted);
+  font-size: 0.92rem;
+  color: var(--text-muted);
   line-height: 1.6;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  flex: 1;
 }
 
-/* Card Footer stack badges layout */
+/* --- TAGS --- */
 .project-tags-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -154,9 +156,45 @@
 .project-tag-badge {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--text-project-tag);
-  background-color: var(--bg-project-tag);
-  border: 1px solid var(--border-project-tag);
-  padding: 4px 10px;
-  border-radius: 12px;
+  color: var(--accent-secondary);
+  background-color: var(--bg-elevated-alt);
+  border: 1px solid var(--border-app);
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+
+/* --- RESPONSIVE: PHONES & SMALL SCREENS --- */
+@media (max-width: 640px) {
+  .projects-section {
+    padding: 56px 16px;
+  }
+
+  .projects-grid {
+    gap: 16px;
+  }
+
+  .project-card {
+    border-radius: 14px;
+  }
+
+  .project-card-body {
+    padding: 18px;
+  }
+
+  .project-card-header {
+    flex-wrap: wrap;
+  }
+
+  .project-card-title {
+    font-size: 1.05rem;
+  }
+
+  .project-card-text {
+    font-size: 0.88rem;
+  }
+
+  .project-tag-badge {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+  }
 }

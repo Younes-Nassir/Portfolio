@@ -1,25 +1,7 @@
-/* --- THEME SPECIFIC TOKENS --- */
-.light .about-section {
-  --text-about-main: #1e293b;
-  --text-about-muted: #475569;
-  --bg-about-btn: #f1f5f9;
-  --border-about-btn: #cbd5e1;
-  --hover-about-btn: #e2e8f0;
-}
-
-.dark .about-section {
-  --text-about-main: #f8fafc;
-  --text-about-muted: #cbd5e1;
-  --bg-about-btn: #1e293b;
-  --border-about-btn: #334155;
-  --hover-about-btn: #475569;
-}
-
-/* --- INSTANT ENTRY ANIMATION --- */
-@keyframes glideUpFadeIn {
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(28px);
   }
   to {
     opacity: 1;
@@ -27,77 +9,102 @@
   }
 }
 
-/* --- STRUCTURAL LAYOUT --- */
 .about-section {
   width: 100%;
   padding: 100px 24px 60px 24px;
-  animation: glideUpFadeIn 1.0s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .about-container {
-  max-width: 750px;
+  max-width: 700px;
   margin: 0 auto;
-  
-  /* Flex direction forces all child elements to center alignment on a vertical axis */
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  text-align: center; /* Center aligns inline paragraph typography text */
 }
 
-.about-title {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: var(--text-about-main);
-  margin-bottom: 24px;
-  border-bottom: 2px solid #6366f1; /* Indigo underline accent */
-  width: max-content;
-  padding-bottom: 6px;
+.about-section .section-eyebrow {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.about-text {
-  color: var(--text-about-muted);
-  font-size: 1.15rem;
-  line-height: 1.8;
-  margin-bottom: 32px;
+.about-card {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-app);
+  border-radius: 16px;
+  padding: 36px;
+  box-shadow: 0 4px 20px -4px var(--shadow);
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.1s;
 }
 
-.about-text p {
-  margin-bottom: 16px;
+.about-card p {
+  color: var(--text-app);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  margin: 0 0 18px 0;
+}
+
+.about-card p:last-of-type {
+  margin-bottom: 0;
 }
 
 .highlight-text {
-  color: #6366f1;
+  color: var(--accent);
   font-weight: 600;
 }
 
-/* --- HORIZONTAL ACTION LINKS --- */
 .about-links {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center coordinates the pill layout horizontally */
-  gap: 16px;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-app);
 }
 
 .about-link-item {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
-  border-radius: 30px; /* Pill style */
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: 10px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   text-decoration: none;
-  background-color: var(--bg-about-btn);
-  border: 1px solid var(--border-about-btn);
+  background-color: var(--bg-elevated-alt);
+  border: 1px solid var(--border-app);
+  color: var(--text-app);
   transition: all 0.2s ease;
 }
 
-/* Custom interactive brand colors on hover */
-.about-link-item.linkedin { color: #0a66c2; }
-.about-link-item.email { color: #ea4335; }
+.about-link-item.linkedin:hover { color: #0a66c2; border-color: #0a66c2; }
+.about-link-item.email:hover { color: #ea4335; border-color: #ea4335; }
 
 .about-link-item:hover {
-  background-color: var(--hover-about-btn);
   transform: translateY(-2px);
+  box-shadow: 0 6px 16px -6px var(--shadow);
+}
+
+/* --- RESPONSIVE: PHONES & SMALL SCREENS --- */
+@media (max-width: 640px) {
+  .about-section {
+    padding: 72px 16px 40px 16px;
+  }
+
+  .about-card {
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+
+  .about-card p {
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+
+  .about-links {
+    gap: 10px;
+  }
+
+  .about-link-item {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
 }

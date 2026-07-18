@@ -10,7 +10,7 @@ import {
   FaDocker,
   FaNodeJs,
   FaGitAlt,
-  FaCode // 1. Added a clean, stable developer icon from FontAwesome
+  FaCode
 } from "react-icons/fa6";
 
 import { 
@@ -21,9 +21,9 @@ import {
   SiRabbitmq,
   SiPostman,
   SiExpress
-  // 2. Removed the failing SiVisualstudio import completely
 } from "react-icons/si";
 import '../styles/Skills.css'
+
 export default function Skills() {
   const skillGroups = [
     {
@@ -59,7 +59,7 @@ export default function Skills() {
       title: "Tools",
       items: [
         { name: "Git & GitHub", icon: <FaGitAlt />, color: "#f05032" },
-        { name: "VS Code", icon: <FaCode />, color: "#007acc" }, // 3. Replaced here
+        { name: "VS Code", icon: <FaCode />, color: "#007acc" },
         { name: "Postman", icon: <SiPostman />, color: "#ff6c37" },
         { name: "Figma", icon: <FaFigma />, color: "#f24e1e" },
         { name: "Docker", icon: <FaDocker />, color: "#2496ed" },
@@ -70,11 +70,15 @@ export default function Skills() {
   return (
     <section id="skills" className="skills-section">
       <div className="skills-container">
-        <h2 className="skills-title">Skills & Tools</h2>
-        
+        <p className="section-eyebrow">Skills &amp; Tools</p>
+
         <div className="skills-grid">
           {skillGroups.map((group, idx) => (
-            <div key={idx} className="skills-card">
+            <div
+              key={idx}
+              className="skills-card"
+              style={{ animationDelay: `${idx * 0.1}s` }}
+            >
               <h3 className="category-title">{group.title}</h3>
               <div className="badges-wrapper">
                 {group.items.map((skill, sIdx) => (
