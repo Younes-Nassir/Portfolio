@@ -1,0 +1,135 @@
+/* --- COMPONENT-SPECIFIC tokens --- */
+.light {
+  --bg-card: #ffffff;       
+  --border-card: #f1f5f9;   
+  --title-color: #1e293b;   
+  --text-badge: #334155;    
+  --border-badge: #cbd5e1;  
+  --shadow-card: rgba(0, 0, 0, 0.05);
+  --bg-badge: #ffffff;
+}
+
+.dark {
+  --bg-card: #1e293b;       
+  --border-card: #334155;   
+  --title-color: #f8fafc;   
+  --text-badge: #e2e8f0;    
+  --border-badge: #475569;  
+  --shadow-card: rgba(0, 0, 0, 0.3);
+  --bg-badge: #1e293b;
+}
+
+/* --- APPLICATION STYLING USAGE --- */
+.skills-section {
+  width: 100%;
+  padding: 80px 24px;
+  background-color: transparent; /* Seamlessly blends into the background set by app-container */
+}
+
+.skills-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.skills-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--title-color);
+  margin-bottom: 40px;
+  transition: color 0.3s ease;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.skills-card {
+  background-color: var(--bg-card);
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px -2px var(--shadow-card);
+  border: 1px solid var(--border-card);
+  transition: all 0.3s ease;
+}
+
+.category-title {
+  color: #b91c1c; 
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-top: 0;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #a855f7; 
+  width: max-content; 
+  padding-bottom: 4px;
+}
+
+.badges-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-badge);
+  border: 1px solid var(--border-badge);
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.skill-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px var(--shadow-card);
+}
+
+.badge-icon {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.badge-name {
+  color: var(--text-badge);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+/* 1. Define the animation */
+@keyframes reveal-animation {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. Apply it to your section */
+.skills-section {
+  /* Link the animation to the scroll position */
+  animation: reveal-animation linear forwards;
+  
+  /* Tell the browser to tie the animation progress to the scroll view */
+  animation-timeline: view();
+  
+  /* 
+     Define when to start and end the animation:
+     - 'entry' range: starts when the section enters the bottom of the viewport
+     - 'cover' range: completes when it reaches a certain point 
+  */
+  animation-range: entry 10% cover 30%;
+}

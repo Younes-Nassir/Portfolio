@@ -1,0 +1,70 @@
+/* --- THEME SPECIFIC TOKENS --- */
+.light .portfolio-footer {
+  --bg-footer: #ffffff;
+  --border-footer: #e2e8f0;
+  --text-footer-main: #475569;
+  --text-footer-accent: #6366f1; /* Bright Indigo for Light Mode */
+}
+
+.dark .portfolio-footer {
+  --bg-footer: #0f172a;
+  --border-footer: #1e293b;
+  --text-footer-main: #94a3b8;
+  --text-footer-accent: #818cf8; /* Soft Indigo for Dark Mode */
+}
+
+/* --- STRUCTURAL LAYOUT --- */
+.portfolio-footer {
+  width: 100%;
+  background-color: var(--bg-footer);
+  border-top: 1px solid var(--border-footer);
+  padding: 24px;
+  margin-top: auto; /* Ensures footer sticks to base of short layouts */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Transitions to a sleek row split on screens larger than mobile dimensions */
+@media (min-width: 640px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* --- BRANDING / IDENTITY TYPOGRAPHY --- */
+.footer-brand {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-footer-main);
+}
+
+.footer-name {
+  font-weight: 600;
+  color: var(--text-footer-accent);
+}
+
+/* --- EMAIL ANCHOR CONFIG --- */
+.footer-email-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-footer-main);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-email-link:hover {
+  color: var(--text-footer-accent);
+  transform: translateY(-2px);
+}

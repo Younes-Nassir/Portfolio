@@ -1,0 +1,162 @@
+/* --- THEME SPECIFIC TOKENS --- */
+.light .projects-section {
+  --text-projects-main: #1e293b;
+  --text-projects-muted: #475569;
+  --bg-project-card: #ffffff;
+  --border-project-card: #f1f5f9;
+  --shadow-project-card: rgba(0, 0, 0, 0.05);
+  --bg-project-tag: #f8fafc;
+  --text-project-tag: #334155;
+  --border-project-tag: #cbd5e1;
+  --icon-hover: #6366f1;
+}
+
+.dark .projects-section {
+  --text-projects-main: #f8fafc;
+  --text-projects-muted: #cbd5e1;
+  --bg-project-card: #1e293b;
+  --border-project-card: #334155;
+  --shadow-project-card: rgba(0, 0, 0, 0.3);
+  --bg-project-tag: #0f172a;
+  --text-project-tag: #cbd5e1;
+  --border-project-tag: #475569;
+  --icon-hover: #818cf8;
+}
+
+/* --- SCROLL TRIGGERED REVEAL ANIMATION --- */
+@keyframes projectGlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- MAIN SECTION COMPONENT STRUCTURAL LAYOUT --- */
+.projects-section {
+  width: 100%;
+  padding: 80px 24px;
+  
+  /* Triggers layout fade-and-lift automatically on scroll */
+  animation: projectGlideUp linear forwards;
+  animation-timeline: view();
+  animation-range: entry 5% cover 25%;
+}
+
+.projects-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.projects-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-projects-main);
+  margin-bottom: 40px;
+  border-bottom: 2px solid #6366f1; /* Indigo underline accent styling */
+  width: max-content;
+  padding-bottom: 4px;
+}
+
+/* --- THE CARD ENGINE GRID --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: stretch; /* Cards stretch to have equal heights in the same row */
+}
+
+@media (min-width: 768px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- INDIVIDUAL CARD STYLING --- */
+.project-card {
+  background-color: var(--bg-project-card);
+  border: 1px solid var(--border-project-card);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px -2px var(--shadow-project-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes tags to the exact bottom of the card */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px -4px var(--shadow-project-card);
+}
+
+/* Card Header elements */
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.folder-icon {
+  font-size: 2rem;
+  color: #6366f1; /* Modern indigo accent folder */
+}
+
+.project-links {
+  display: flex;
+  gap: 14px;
+}
+
+.project-icon-link {
+  font-size: 1.2rem;
+  color: var(--text-projects-muted);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.project-icon-link:hover {
+  color: var(--icon-hover);
+  transform: scale(1.1);
+}
+
+/* Card content body typography */
+.project-card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-projects-main);
+  margin-bottom: 12px;
+}
+
+.project-card-text {
+  font-size: 0.95rem;
+  color: var(--text-projects-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Card Footer stack badges layout */
+.project-tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-tag-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-project-tag);
+  background-color: var(--bg-project-tag);
+  border: 1px solid var(--border-project-tag);
+  padding: 4px 10px;
+  border-radius: 12px;
+}

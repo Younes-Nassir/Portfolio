@@ -1,0 +1,103 @@
+/* --- THEME SPECIFIC TOKENS --- */
+.light .about-section {
+  --text-about-main: #1e293b;
+  --text-about-muted: #475569;
+  --bg-about-btn: #f1f5f9;
+  --border-about-btn: #cbd5e1;
+  --hover-about-btn: #e2e8f0;
+}
+
+.dark .about-section {
+  --text-about-main: #f8fafc;
+  --text-about-muted: #cbd5e1;
+  --bg-about-btn: #1e293b;
+  --border-about-btn: #334155;
+  --hover-about-btn: #475569;
+}
+
+/* --- INSTANT ENTRY ANIMATION --- */
+@keyframes glideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- STRUCTURAL LAYOUT --- */
+.about-section {
+  width: 100%;
+  padding: 100px 24px 60px 24px;
+  animation: glideUpFadeIn 1.0s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.about-container {
+  max-width: 750px;
+  margin: 0 auto;
+  
+  /* Flex direction forces all child elements to center alignment on a vertical axis */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  text-align: center; /* Center aligns inline paragraph typography text */
+}
+
+.about-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-about-main);
+  margin-bottom: 24px;
+  border-bottom: 2px solid #6366f1; /* Indigo underline accent */
+  width: max-content;
+  padding-bottom: 6px;
+}
+
+.about-text {
+  color: var(--text-about-muted);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.about-text p {
+  margin-bottom: 16px;
+}
+
+.highlight-text {
+  color: #6366f1;
+  font-weight: 600;
+}
+
+/* --- HORIZONTAL ACTION LINKS --- */
+.about-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center coordinates the pill layout horizontally */
+  gap: 16px;
+}
+
+.about-link-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 30px; /* Pill style */
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  background-color: var(--bg-about-btn);
+  border: 1px solid var(--border-about-btn);
+  transition: all 0.2s ease;
+}
+
+/* Custom interactive brand colors on hover */
+.about-link-item.linkedin { color: #0a66c2; }
+.about-link-item.email { color: #ea4335; }
+
+.about-link-item:hover {
+  background-color: var(--hover-about-btn);
+  transform: translateY(-2px);
+}
